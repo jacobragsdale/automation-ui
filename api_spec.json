@@ -1,0 +1,1276 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Root  Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "summary": "Get Weather",
+        "operationId": "get_weather_weather_get",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "Nashville, TN",
+              "title": "Location"
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "imperial",
+                "metric"
+              ],
+              "type": "string",
+              "default": "imperial",
+              "title": "Units"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Weather Weather Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather/forecast/daily": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "summary": "Get Daily Forecast",
+        "operationId": "get_daily_forecast_weather_forecast_daily_get",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "Nashville, TN",
+              "title": "Location"
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "imperial",
+                "metric"
+              ],
+              "type": "string",
+              "default": "imperial",
+              "title": "Units"
+            }
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 16,
+              "minimum": 1,
+              "default": 5,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Daily Forecast Weather Forecast Daily Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather/forecast/hourly": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "summary": "Get Hourly Forecast",
+        "operationId": "get_hourly_forecast_weather_forecast_hourly_get",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "Nashville, TN",
+              "title": "Location"
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "imperial",
+                "metric"
+              ],
+              "type": "string",
+              "default": "imperial",
+              "title": "Units"
+            }
+          },
+          {
+            "name": "hours",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 168,
+              "minimum": 1,
+              "default": 24,
+              "title": "Hours"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Hourly Forecast Weather Forecast Hourly Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lights/scenes/morning": {
+      "post": {
+        "tags": [
+          "Lights"
+        ],
+        "summary": "Run Morning Scene",
+        "operationId": "run_morning_scene_lights_scenes_morning_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Run Morning Scene Lights Scenes Morning Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lights/scenes/night": {
+      "post": {
+        "tags": [
+          "Lights"
+        ],
+        "summary": "Run Night Scene",
+        "operationId": "run_night_scene_lights_scenes_night_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Run Night Scene Lights Scenes Night Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lights/power/on": {
+      "post": {
+        "tags": [
+          "Lights"
+        ],
+        "summary": "Turn Lights On",
+        "operationId": "turn_lights_on_lights_power_on_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Turn Lights On Lights Power On Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lights/power/off": {
+      "post": {
+        "tags": [
+          "Lights"
+        ],
+        "summary": "Turn Lights Off",
+        "operationId": "turn_lights_off_lights_power_off_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Turn Lights Off Lights Power Off Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lights/color": {
+      "post": {
+        "tags": [
+          "Lights"
+        ],
+        "summary": "Set Lights Color",
+        "operationId": "set_lights_color_lights_color_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Set Lights Color Lights Color Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lights/devices": {
+      "get": {
+        "tags": [
+          "Lights"
+        ],
+        "summary": "Get Devices",
+        "operationId": "get_devices_lights_devices_get",
+        "parameters": [
+          {
+            "name": "force_refresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Force Refresh"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Devices Lights Devices Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/lockdown": {
+      "post": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Toggle Lockdown",
+        "operationId": "toggle_lockdown_nextdns_lockdown_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LockdownToggleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Toggle Lockdown Nextdns Lockdown Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/denylist": {
+      "post": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Add To Denylist",
+        "operationId": "add_to_denylist_nextdns_denylist_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DenylistAddRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Add To Denylist Nextdns Denylist Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/settings": {
+      "get": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Get Settings",
+        "operationId": "get_settings_nextdns_settings_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Settings Nextdns Settings Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/parental_controls": {
+      "get": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Get Parental Controls",
+        "operationId": "get_parental_controls_nextdns_parental_controls_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Parental Controls Nextdns Parental Controls Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/blocklist": {
+      "get": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Get Blocklist",
+        "operationId": "get_blocklist_nextdns_blocklist_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Blocklist Nextdns Blocklist Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/filters/parental-controls": {
+      "patch": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Update Parental Controls",
+        "operationId": "update_parental_controls_nextdns_filters_parental_controls_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParentalControlsUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Update Parental Controls Nextdns Filters Parental Controls Patch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/filters/parental-controls/{entry_type}/{entry_id}": {
+      "patch": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Toggle Parental Filter",
+        "operationId": "toggle_parental_filter_nextdns_filters_parental_controls__entry_type___entry_id__patch",
+        "parameters": [
+          {
+            "name": "entry_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "category",
+                "service"
+              ],
+              "type": "string",
+              "title": "Entry Type"
+            }
+          },
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entry Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParentFilterToggleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Toggle Parental Filter Nextdns Filters Parental Controls  Entry Type   Entry Id  Patch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/filters/privacy": {
+      "patch": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Update Privacy",
+        "operationId": "update_privacy_nextdns_filters_privacy_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrivacyUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Update Privacy Nextdns Filters Privacy Patch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/focus-sessions": {
+      "post": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Create Focus Session",
+        "operationId": "create_focus_session_nextdns_focus_sessions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FocusSessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Create Focus Session Nextdns Focus Sessions Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nextdns/filters/state": {
+      "get": {
+        "tags": [
+          "NextDNS"
+        ],
+        "summary": "Get Filters State",
+        "operationId": "get_filters_state_nextdns_filters_state_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Filters State Nextdns Filters State Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/quote": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Quote",
+        "operationId": "get_quote_stocks_quote_get",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Symbol"
+            }
+          },
+          {
+            "name": "force_refresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Force Refresh"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Quote Stocks Quote Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/ratios": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Ratios",
+        "operationId": "get_ratios_stocks_ratios_get",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Symbol"
+            }
+          },
+          {
+            "name": "force_refresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Force Refresh"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Ratios Stocks Ratios Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/company": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Company",
+        "operationId": "get_company_stocks_company_get",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Symbol"
+            }
+          },
+          {
+            "name": "force_refresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Force Refresh"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Company Stocks Company Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ColorRequest": {
+        "properties": {
+          "hsv": {
+            "prefixItems": [
+              {
+                "type": "integer",
+                "maximum": 360,
+                "minimum": 0
+              },
+              {
+                "type": "integer",
+                "maximum": 100,
+                "minimum": 0
+              },
+              {
+                "type": "integer",
+                "maximum": 100,
+                "minimum": 0
+              }
+            ],
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Hsv"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "hsv"
+        ],
+        "title": "ColorRequest"
+      },
+      "DenylistAddRequest": {
+        "properties": {
+          "domain": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Domain"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "domain"
+        ],
+        "title": "DenylistAddRequest"
+      },
+      "FocusSessionRequest": {
+        "properties": {
+          "duration_minutes": {
+            "type": "integer",
+            "maximum": 1440,
+            "minimum": 5,
+            "title": "Duration Minutes",
+            "default": 60
+          },
+          "domains": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Domains"
+          },
+          "categoryIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Categoryids"
+          },
+          "serviceIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Serviceids"
+          },
+          "safeSearch": {
+            "type": "boolean",
+            "title": "Safesearch",
+            "default": true
+          },
+          "youtubeRestrictedMode": {
+            "type": "boolean",
+            "title": "Youtuberestrictedmode",
+            "default": true
+          },
+          "blockBypass": {
+            "type": "boolean",
+            "title": "Blockbypass",
+            "default": true
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "FocusSessionRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LockdownToggleRequest": {
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "title": "Active"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "active"
+        ],
+        "title": "LockdownToggleRequest"
+      },
+      "ParentFilterToggleRequest": {
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "title": "Active"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "active"
+        ],
+        "title": "ParentFilterToggleRequest"
+      },
+      "ParentalControlsUpdateRequest": {
+        "properties": {
+          "safeSearch": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Safesearch"
+          },
+          "youtubeRestrictedMode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Youtuberestrictedmode"
+          },
+          "blockBypass": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blockbypass"
+          },
+          "categories": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "boolean"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Categories"
+          },
+          "services": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "boolean"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Services"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ParentalControlsUpdateRequest"
+      },
+      "PrivacyUpdateRequest": {
+        "properties": {
+          "updates": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Updates"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "updates"
+        ],
+        "title": "PrivacyUpdateRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "System",
+      "description": "Service health and status endpoints."
+    },
+    {
+      "name": "Weather",
+      "description": "Weather forecast endpoints."
+    },
+    {
+      "name": "Lights",
+      "description": "Kasa light control and device endpoints."
+    },
+    {
+      "name": "NextDNS",
+      "description": "NextDNS configuration and control endpoints."
+    },
+    {
+      "name": "Stocks",
+      "description": "Public stock quotes and financial metrics."
+    }
+  ]
+}
