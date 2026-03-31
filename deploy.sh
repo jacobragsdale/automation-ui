@@ -11,7 +11,7 @@ REMOTE_DIR="${REMOTE_DIR:-~/automation-ui}"
 APP_PORT="${APP_PORT:-8080}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+PROJECT_ROOT="${SCRIPT_DIR}"
 COMPOSE_FILE="${PROJECT_ROOT}/compose.yml"
 
 require_cmd() {
