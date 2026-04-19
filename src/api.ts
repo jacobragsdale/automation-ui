@@ -15,5 +15,5 @@ export const lightsOn     = () => post('/lights/power/on')
 export const lightsOff    = () => post('/lights/power/off')
 export const setColor     = (hsv: HsvColor) =>
   post('/lights/color', { hsv: [Math.round(hsv.h), Math.round(hsv.s), Math.round(hsv.v)] })
-export const sceneMorning = () => post('/lights/scenes/morning')
-export const sceneNight   = () => post('/lights/scenes/night')
+export const setBrightness = (brightness: number) =>
+  post('/lights/brightness', { brightness: Math.round(brightness) })

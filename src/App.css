@@ -87,20 +87,31 @@
   border: 1px solid var(--border);
 }
 
-.btn-scene {
-  background: var(--surface-2);
-  color: var(--text);
-  border: 1px solid var(--border);
-  height: 48px;
-  font-size: 14px;
-}
-
-/* ── Power / Scene rows ──────────────────────────────── */
-.power-row,
-.scene-row {
+/* ── Power row ───────────────────────────────────────── */
+.power-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+}
+
+/* ── Dimmer ──────────────────────────────────────────── */
+.dimmer-row {
+  display: grid;
+  gap: 14px;
+}
+
+.dimmer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dimmer-slider {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--accent);
 }
 
 /* ── Color swatches ──────────────────────────────────── */
@@ -108,6 +119,13 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.swatch-item {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
 }
 
 .swatch {
@@ -128,6 +146,41 @@
 }
 
 .swatch:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.swatch-add {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.swatch-remove {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, opacity 0.15s;
+}
+
+.swatch-remove:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.swatch-remove:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
